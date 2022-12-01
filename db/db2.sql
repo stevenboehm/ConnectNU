@@ -1,7 +1,6 @@
 CREATE DATABASE ConnectNU;
-CREATE USER 'webapp'@'%' IDENTIFIED BY 'abc123';
-GRANT ALL PRIVILEGES ON ConnectNU.* TO 'webapp'@'%';
-FLUSH PRIVILEGES;
+
+
 
 -- move into the the database we just created mhm
 USE ConnectNU;
@@ -199,3 +198,7 @@ CREATE TABLE eventPoints (
     (002118972, 1),
     (002118972, 2),
     (002118972, 3);
+   
+    
+GRANT ALL PRIVILEGES ON ConnectNU.* TO 'webapp'@'%';
+FLUSH PRIVILEGES;
