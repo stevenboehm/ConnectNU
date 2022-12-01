@@ -3,7 +3,7 @@ CREATE USER 'webapp'@'%' IDENTIFIED BY 'abc123';
 GRANT ALL PRIVILEGES ON ConnectNU.* TO 'webapp'@'%';
 FLUSH PRIVILEGES;
 
--- move into the the database we just created
+-- move into the the database we just created mhm
 USE ConnectNU;
 
 CREATE TABLE ClubMember (
