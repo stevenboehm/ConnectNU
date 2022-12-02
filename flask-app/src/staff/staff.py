@@ -5,6 +5,10 @@ from src import db
 
 staff = Blueprint('staff', __name__)
 
+@exec.route("/")
+def hello_world():
+    return f'<h1>Welcome to ConnectNU! You are a Staff Member!</h1>'
+
 # Get all customers from the DB
 @staff.route('/customers', methods=['GET'])
 def get_customers():

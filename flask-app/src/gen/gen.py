@@ -5,6 +5,10 @@ from src import db
 
 gen = Blueprint('gen', __name__)
 
+@gen.route("/")
+def hello_world():
+    return f'<h1>Welcome to ConnectNU! You are a Member!</h1>'
+
 # Get all the products from the database
 @gen.route('/products', methods=['GET'])
 def get_products():
