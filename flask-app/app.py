@@ -11,7 +11,7 @@ app = create_app()
 
 @app.route("/")
 def hello_world():
-    return f'<h1>Wrong path! </h1>'
+    return f'<h1>Welcome to ConnectNU! </h1>'
 
 
 if __name__ == '__main__':

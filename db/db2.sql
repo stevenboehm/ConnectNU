@@ -37,6 +37,8 @@ VALUES
     (4, 'Marketing'),
     (5, 'Recruitment');
 
+
+
 CREATE TABLE committeeMember (
     committeeID INTEGER,
     memberID INTEGER,

@@ -3,10 +3,10 @@ import json
 from src import db
 
 
-customers = Blueprint('customers', __name__)
+exec = Blueprint('exec', __name__)
 
 # Get all customers from the DB
-@customers.route('/customers', methods=['GET'])
+@exec.route('/customers', methods=['GET'])
 def get_customers():
     cursor = db.get_db().cursor()
     cursor.execute('select committeeName from committees')
