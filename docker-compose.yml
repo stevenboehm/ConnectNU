@@ -16,7 +16,7 @@ services:
     # have the container restart if it fails for some reason. 
     restart: unless-stopped
 
-    # map host port 8001 to container port 4000 (see the EXPOSE command in api/Dockerfile)
+    # map host port 4000 to container port 4000 (see the EXPOSE command in api/Dockerfile)
     ports:
       - 4000:4000
 

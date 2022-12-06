@@ -8,10 +8,10 @@ import io
 
 
 
-customers = Blueprint('customers', __name__)
+exec = Blueprint('exec', __name__)
 
 
-@customers.route('/execHome/<number>', methods = ["GET"])
+@exec.route('/execHome/<number>', methods = ["GET"])
 def info(number):
     cursor = db.get_db().cursor()
     sql = "SELECT firstName from ClubMember WHERE idNumber = %s"
@@ -27,7 +27,7 @@ def info(number):
     the_response.mimetype = 'application/json'
     return the_response
 
-@customers.route('/execHome/<number>/roster', methods = ["GET"])
+@exec.route('/execHome/<number>/roster', methods = ["GET"])
 def roster(number):
     cursor = db.get_db().cursor()
     sql = "SELECT * from ClubMember"
@@ -42,7 +42,7 @@ def roster(number):
     the_response.mimetype = 'application/json'
     return the_response
 
-@customers.route('/execHome/<number>/calendar', methods = ["GET"])
+@exec.route('/execHome/<number>/calendar', methods = ["GET"])
 def calendar(number):
     cursor = db.get_db().cursor()
     sql = "SELECT eventDate as Date, eventType as Category, eventTitle as Title, eventID from Events"
@@ -57,7 +57,7 @@ def calendar(number):
     the_response.mimetype = 'application/json'
     return the_response
 
-@customers.route('/execHome/qr/<event>', methods = ["GET"])
+@exec.route('/execHome/qr/<event>', methods = ["GET"])
 def qr(event):
     img = qrcode.make(event)
     buffered = io.BytesIO()
@@ -66,7 +66,7 @@ def qr(event):
     jsoned = make_response(jsonify([{"string" : img_str.decode('utf-8')}]))
     return jsoned
 
-@customers.route('/execHome/events', methods = ["GET"])
+@exec.route('/execHome/events', methods = ["GET"])
 def events():
     cursor = db.get_db().cursor()
     sql = "SELECT eventType from Events"
@@ -81,7 +81,7 @@ def events():
     the_response.mimetype = 'application/json'
     return the_response
 
-@customers.route('/execHome/numEvent', methods = ["GET"])
+@exec.route('/execHome/numEvent', methods = ["GET"])
 def numEvent():
     cursor=db.get_db().cursor()
     sql = "SELECT MAX(eventID) as maximum from Events"
@@ -94,7 +94,7 @@ def numEvent():
     maximum = make_response(jsonify((json_data[0]["maximum"] + 1)))
     return maximum
 
-@customers.route('/execHome/addEvent/<eventID>', methods = ["POST"])
+@exec.route('/execHome/addEvent/<eventID>', methods = ["POST"])
 def addEvent(eventID):
     conn = db.connect()
     current_app.logger.info(request.form)
