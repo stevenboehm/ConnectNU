@@ -4,7 +4,7 @@ from flask import Flask
 from flaskext.mysql import MySQL
 
 # create a MySQL object that we will use in other parts of the API
-db = MySQL()
+db = MySQL(autocommit = True)
 
 def create_app():
     app = Flask(__name__)
@@ -26,14 +26,14 @@ def create_app():
     
     # Import the various routes
     from src.views import views
-    from src.gen.gen import gen
-    from src.exec.exec  import exec
-    from src.staff.staff  import staff
+    from src.customers.customers import customers
+    from src.products.products  import products
+    from src.staff.staff import staff
 
     # Register the routes that we just imported so they can be properly handled
-    app.register_blueprint(views, url_prefix='/views')
-    app.register_blueprint(gen,  url_prefix='/gen')
-    app.register_blueprint(exec,    url_prefix='/exec')
-    app.register_blueprint(staff,    url_prefix='/staff')
+    app.register_blueprint(views)
+    app.register_blueprint(customers)
+    app.register_blueprint(products)
+    app.register_blueprint(staff)
 
     return app

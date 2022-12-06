@@ -1,7 +1,5 @@
 CREATE DATABASE ConnectNU;
 
-
-
 -- move into the the database we just created mhm
 USE ConnectNU;
 
@@ -36,8 +34,6 @@ VALUES
     (3, 'Events'),
     (4, 'Marketing'),
     (5, 'Recruitment');
-
-
 
 CREATE TABLE committeeMember (
     committeeID INTEGER,
@@ -175,15 +171,16 @@ CREATE TABLE duePayment (
 CREATE TABLE Events (
     eventID INTEGER PRIMARY KEY, 
     eventType VARCHAR(20), 
-    eventDate DATE
+    eventDate DATE,
+    eventTitle VARCHAR(20)
 );
 
  INSERT INTO Events 
-    (eventID, eventType, eventDate)
+    (eventID, eventType, eventDate, eventTitle)
  VALUES 
-    (1, 'meeting', '2022-01-02'),
-    (2, 'internal', '2022-04-02'),
-    (3, 'external', '2022-04-05');
+    (1, 'meeting', '2022-01-02', 'Meeting 1'),
+    (2, 'internal', '2022-04-02', 'Movie Night'),
+    (3, 'external', '2022-04-05', 'Tabling');
 
 
 
@@ -199,8 +196,9 @@ CREATE TABLE eventPoints (
  VALUES 
     (002118972, 1),
     (002118972, 2),
-    (002118972, 3);
-   
-    
+    (002118972, 3),
+    (002110084, 2),
+    (002110084, 3);
+
 GRANT ALL PRIVILEGES ON ConnectNU.* TO 'webapp'@'%';
 FLUSH PRIVILEGES;
