@@ -6,7 +6,9 @@ This code contains the back-end necessary to run an AppSmith UI entitled Connect
 
 ConnectNU is a club management software, containing three personas - general members, executive board members, and supervisors. The application contains information on roster, dues, participation points, due payments, and event attendance. 
 
-ConnectNU is launched through Docker as follows
+### Installation
+
+ConnectNU is launched by navigating into the ConnectNU folder location and launching the Docker containers as follows
 ```python
 docker compose build
 ```
