@@ -7,7 +7,23 @@ from src import db
 
 staff = Blueprint('staff', __name__)
 
-@staff.route('/supervisor/payments')
+@staff.route('/staffHome/<number>', methods=['GET'])
+def info(number):
+    cursor = db.get_db().cursor()
+    sql = "SELECT firstName from supervisor WHERE staffID = %s"
+    val = number
+    cursor.execute(sql, val)
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
+    theData = cursor.fetchall()
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+@staff.route('/staffHome/payments')
 def payments():
     cursor = db.get_db().cursor()
     sql = "SELECT dueAmount as Amount, paymentDate as 'Payment Date', firstName as 'First Name', lastName as 'Last Name' from duePayment JOIN ClubMember on duePayment.memberID = ClubMember.idNumber NATURAL JOIN dues"
@@ -22,7 +38,7 @@ def payments():
     the_response.mimetype = 'application/json'
     return the_response
 
-@staff.route('/supervisor/dues')
+@staff.route('/staffHome/dues')
 def dues():
     cursor = db.get_db().cursor()
     sql = "SELECT dueID, dueTypeName from dues"
@@ -37,7 +53,7 @@ def dues():
     the_response.mimetype = 'application/json'
     return the_response
 
-@staff.route('/supervisor/inputpayment', methods = ["POST", "GET"])
+@staff.route('/staffHome/inputpayment', methods = ["POST", "GET"])
 def input():
     conn = db.connect()
     current_app.logger.info(request.form)

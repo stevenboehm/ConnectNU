@@ -69,37 +69,6 @@ VALUES
 
 
 
-CREATE TABLE club (
-    clubID INTEGER PRIMARY KEY,
-    clubName TEXT
-);
-
-INSERT INTO club 
-    (clubID, clubName)
-VALUES 
-    (1, 'Engineering Club'),
-    (2, 'Film Club'),
-    (3, 'Coding Club');
-
-
-
-CREATE TABLE MemberOfClub (
-    clubID INTEGER,
-    memberID INTEGER,
-    FOREIGN KEY (clubID) REFERENCES club(clubID),
-    FOREIGN KEY (memberID) REFERENCES ClubMember(idNumber),
-    PRIMARY KEY(clubID, memberID)
-);
-
-INSERT INTO MemberOfClub 
-    (clubID, memberID)
-VALUES 
-    (1, 002110392),
-    (2, 002118972),
-    (3, 002118972);
-
-
-
 CREATE TABLE supervisor (
     staffID INTEGER PRIMARY KEY,
     firstName TEXT,
@@ -114,26 +83,6 @@ VALUES
     (291, 'Jemmie', 'Berg'),
     (168, 'Gnni', 'John'),
     (118, 'Susanetta', 'Benedite');                          
-
-
-
-CREATE TABLE supervisorClub (
-    supervisorID INTEGER,
-    clubID INTEGER,
-    FOREIGN KEY (supervisorID) REFERENCES supervisor(staffID),
-    FOREIGN KEY (clubID) REFERENCES club(clubID),
-    PRIMARY KEY (supervisorID, clubID)
-);
-
-INSERT INTO supervisorClub 
-    (supervisorID, clubID)
-VALUES 
-    (203, 1),
-    (393, 2),
-    (291, 3),
-    (168, 2),
-    (118, 3); 
-
 
 
 CREATE TABLE dues (
